@@ -7,15 +7,27 @@
 
 # git pull : rae tods los cambios del repositorio
 
-
-from sqlalchemy import 
+from sqlalchemy import Col
 from sqlalchemy.orm import DeclarativeBase
 
 class base(DeclarativeBase):
     pass
 
-class Restaurante(base):
-    __tablename__ = "Cliente"
-    __tablename__ = "Producto"
-    __tablename__ = "Repartidor"
-    __tablename__ = "Pedido"
+class Cliente(base):
+    __tablename__ = "Clientes"
+
+    id        = Column(Integer, primary_key=True)
+    nombre    = Column(String)
+    apellido = Column(String)
+    telefono    = Column(In)
+    direccion     = Column(Integer)
+
+class Producto(base):
+    __tablename__ = "Productos"
+
+    id        = Column(Integer, primary_key=True)
+    nombre    = Column(String)
+    categoria = Column(String)
+    precio    = Column(Float)
+    stock     = Column(Integer)
+    activo    = Column(Boolean, default=True)
