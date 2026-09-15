@@ -7,8 +7,8 @@
 
 # git pull : rae tods los cambios del repositorio
 
-from sqlalchemy import Col
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy imprt Col
+from sqlalchemy.oorm import DeclarativeBase
 
 class base(DeclarativeBase):
     pass
