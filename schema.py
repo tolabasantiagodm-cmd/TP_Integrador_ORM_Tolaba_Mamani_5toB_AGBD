@@ -28,7 +28,7 @@ class Producto(Base):
     id          = Column(Integer, primary_key=True)
     nombre      = Column(String)
     descripcion = Column(String)
-    precio      = Column(Float)
+    precio      = Column(Integer)
     activo      = Column(Boolean, default=True)
 
 engine = create_engine("sqlite:///mi_tabla.db")
@@ -43,11 +43,11 @@ Clientes_a_insertar = [
 ]
 
 Productos_a_insertar = [
-    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
-    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
-    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
-    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
-    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True)
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000, activo=True)
 ]
 
 with Session(engine) as session:
@@ -58,6 +58,7 @@ with Session(engine) as session:
 #    total_productos = session.query(Producto).count()
 #    print(f"total de los productos insertados : {total_productos}")
 
- print("------------------filtro para Producto------------------")
+    filtro_productos = session.query(Producto).filter(Producto.precio > 900).all
 
-filtro_productos = session.query(Producto).filter(Producto)
+    for p in filtro_productos:
+        print(f"nombre del producto = {p.nombre}")
