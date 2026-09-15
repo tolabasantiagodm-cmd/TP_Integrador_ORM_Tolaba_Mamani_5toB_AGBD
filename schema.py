@@ -7,7 +7,7 @@
 
 # git pull : rae tods los cambios del repositorio
 
-from sqlalchemy imprt Col
+from sqlalchemy import Column, Integer, String, Integer
 from sqlalchemy.oorm import DeclarativeBase
 
 class base(DeclarativeBase):
@@ -19,8 +19,8 @@ class Cliente(base):
     id        = Column(Integer, primary_key=True)
     nombre    = Column(String)
     apellido = Column(String)
-    telefono    = Column(In)
-    direccion     = Column(Integer)
+    telefono    = Column(Integer)
+    direccion     = Column(String)
 
 class Producto(base):
     __tablename__ = "Productos"
