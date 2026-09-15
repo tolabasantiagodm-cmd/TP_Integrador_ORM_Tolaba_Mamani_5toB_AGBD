@@ -50,11 +50,14 @@ Productos_a_insertar = [
     Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True)
 ]
 
-print("-------------------")
 with Session(engine) as session:
 #    session.add_all(Clientes_a_insertar)
 #    session.add_all(Productos_a_insertar)
 #    session.commit()
 
-    total_productos = session.query(Producto).count()
-    print(f"total de los productos insertados : {total_productos}")
+#    total_productos = session.query(Producto).count()
+#    print(f"total de los productos insertados : {total_productos}")
+
+ print("------------------filtro para Producto------------------")
+
+filtro_productos = session.query(Producto).filter(Producto)
