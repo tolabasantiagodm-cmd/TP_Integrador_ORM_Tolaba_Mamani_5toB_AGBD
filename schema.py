@@ -5,29 +5,56 @@
 #   - Repartidor (id, nombre, apellido, activo)
 #   - Pedido (id, fecha, total, estado, cliente_id, repartidor_id)
 
-# git pull : rae tods los cambios del repositorio
+# git pull : trae tods los cambios del repositorio
 
-from sqlalchemy import Column, Integer, String, Integer
-from sqlalchemy.oorm import DeclarativeBase
+from sqlalchemy import Column, Integer, String, Float, Boolean, create_engine
+from sqlalchemy.orm import DeclarativeBase, Session
 
-class base(DeclarativeBase):
+class Base(DeclarativeBase):
     pass
 
-class Cliente(base):
+class Cliente(Base):
     __tablename__ = "Clientes"
 
     id        = Column(Integer, primary_key=True)
-    nombre    = Column(String)
-    apellido = Column(String)
-    telefono    = Column(Integer)
-    direccion     = Column(String)
+    nombre    = Column(String(50))
+    apellido  = Column(String(50))
+    telefono  = Column(String(20))
+    direccion = Column(String)
 
-class Producto(base):
+class Producto(Base):
     __tablename__ = "Productos"
 
-    id        = Column(Integer, primary_key=True)
-    nombre    = Column(String)
-    categoria = Column(String)
-    precio    = Column(Float)
-    stock     = Column(Integer)
-    activo    = Column(Boolean, default=True)
+    id          = Column(Integer, primary_key=True)
+    nombre      = Column(String)
+    descripcion = Column(String)
+    precio      = Column(Float)
+    activo      = Column(Boolean, default=True)
+
+engine = create_engine("sqlite:///mi_tabla.db")
+Base.metadata.create_all(engine)
+
+Clientes_a_insertar = [
+    Cliente(nombre="juan", apellido="gomez", telefono="1128745689", direccion="G.paz"),
+    Cliente(nombre="juan", apellido="gomez", telefono="1128745689", direccion="G.paz"),
+    Cliente(nombre="juan", apellido="gomez", telefono="1128745689", direccion="G.paz"),
+    Cliente(nombre="juan", apellido="gomez", telefono="1128745689", direccion="G.paz"),
+    Cliente(nombre="juan", apellido="gomez", telefono="1128745689", direccion="G.paz")
+]
+
+Productos_a_insertar = [
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True),
+    Producto(nombre="joel", descripcion="descripcion del producto", precio=1000.0, activo=True)
+]
+
+print("-------------------")
+with Session(engine) as session:
+#    session.add_all(Clientes_a_insertar)
+#    session.add_all(Productos_a_insertar)
+#    session.commit()
+
+    total_productos = session.query(Producto).count()
+    print(f"total de los productos insertados : {total_productos}")
