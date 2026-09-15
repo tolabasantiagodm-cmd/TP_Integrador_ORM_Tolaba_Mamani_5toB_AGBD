@@ -4,3 +4,8 @@
 #   - Producto (id, nombre, descripcion, precio, activo)
 #   - Repartidor (id, nombre, apellido, activo)
 #   - Pedido (id, fecha, total, estado, cliente_id, repartidor_id)
+
+# git pull : rae tods los cambios del repositorio
+
+
+from sqlalchemy import
