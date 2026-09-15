@@ -8,4 +8,14 @@
 # git pull : rae tods los cambios del repositorio
 
 
-from sqlalchemy import
+from sqlalchemy import 
+from sqlalchemy.orm import DeclarativeBase
+
+class base(DeclarativeBase):
+    pass
+
+class Restaurante(base):
+    __tablename__ = "Cliente"
+    __tablename__ = "Producto"
+    __tablename__ = "Repartidor"
+    __tablename__ = "Pedido"
